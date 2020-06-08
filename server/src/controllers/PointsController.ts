@@ -3,6 +3,13 @@ import {Request, Response} from 'express'
 
 class PointsController 
 {
+    async showAll (request : Request, response : Response)
+    {
+        const points = await knex('points').select('*')
+
+        return response.status(400).json({points})
+    }
+
     async show (request: Request, response: Response) {
         const { id } = request.params;
 
