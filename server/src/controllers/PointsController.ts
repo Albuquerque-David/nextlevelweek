@@ -96,9 +96,14 @@ class PointsController
                             .select('points.*')
 
         
-
-        return response.json({points})
-
+        const serializedPoints = points.map(point => {
+            return {
+                ...point,
+                image_url: `http://192.168.0.156:3333/uploads/${point.image}`,
+            };
+            });
+        
+        return response.json(serializedPoints);
     }
 }
 
